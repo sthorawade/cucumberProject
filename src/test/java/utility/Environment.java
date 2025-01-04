@@ -24,11 +24,25 @@ public class Environment {
 			  driver.get("http://www.google.com/"); 
 			  Thread.sleep(5000);  // Let the user actually see something!
 			  WebElement searchBox = driver.findElement(By.name("q"));
-			  searchBox.sendKeys("ChromeDriver");
+			  String searchWith="ChromeDriver";
+			  searchBox.sendKeys(searchWith);
 			  searchBox.submit(); 
 			  Thread.sleep(5000);  // Let the user actually see something!
+			  WebElement searchText=driver.findElement(By.xpath("//*[@class='gLFyf']"));
+			  String result=searchText.getText();
+			  System.out.println(result);
+			  validateContains(searchWith,result);
 			  driver.quit();  
 			 }
+	
+	public static void validateContains(String Expected, String Actual) {
+		if (Expected.equals(Actual)) {
+			System.out.println("Pass the validation");
+		}
+		else {
+			System.out.println("Fail the validation");
+		}
+	}
 			
 	
 	
